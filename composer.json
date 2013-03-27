@@ -1,0 +1,16 @@
+{
+  "name": "pagon/app",
+  "description": "Pagon example app",
+  "authors": [
+    {
+      "name": "Corrie Zhao",
+      "email": "hfcorriez@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.9",
+    "pagon/pagon": "dev-develop",
+    "j4mie/paris": "v1.3.0",
+    "davedevelopment/phpmig": "dev-master"
+  }
+}

@@ -11,10 +11,11 @@ if (empty($app->config['database'])) {
     die('Config "database" is not found' . PHP_EOL);
 }
 
-$config = $app->config['database'];
-$dsn = sprintf('%s:host=%s;port=%s', $config['type'], $config['host'], $config['port']);
-
-$container['pdo'] = new PDO($dsn, $config['username'], $config['password']);
+$container['pdo'] = $container->share(function () use ($app) {
+    $config = $app->config['database'];
+    $dsn = sprintf('%s:host=%s;port=%s', $config['type'], $config['host'], $config['port']);
+    return new PDO($dsn, $config['username'], $config['password']);
+});
 
 $container['phpmig.adapter'] = $container->share(function ($container) {
     return new Adapter\PDO\Sql($container['pdo'], 'migrations');

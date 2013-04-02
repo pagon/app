@@ -16,5 +16,5 @@ return array(
     ),
     'crypt'    => array(
         'key' => 'crypt key'
-    ),
+    )
 );

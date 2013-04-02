@@ -1,6 +1,8 @@
 {
   "name": "pagon/app",
   "description": "Pagon example app",
+  "keywords": ["pagon", "skelton", "example"],
+  "license": "MIT",
   "authors": [
     {
       "name": "Corrie Zhao",

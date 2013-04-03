@@ -39,13 +39,21 @@ class Init extends Route
 
             $pdo->exec("USE `{$config['dbname']}`");
             $sql = file_get_contents(APP_DIR . '/migrations/schema.sql');
-            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, 0);
-            $pdo->exec($sql);
+            if (!$sql) {
+                print Cli::text('migrations/schema.sql is empty' . PHP_EOL, 'red');
+            } else {
+                $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, 0);
+                $pdo->exec($sql);
+            }
 
             if ($this->params['data'] && is_file(APP_DIR . '/migrations/data.sql')) {
                 $sql = file_get_contents(APP_DIR . '/migrations/data.sql');
-                $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, 0);
-                $pdo->exec($sql);
+                if (!$sql) {
+                    print Cli::text('migrations/data.sql is empty' . PHP_EOL, 'red');
+                } else {
+                    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, 0);
+                    $pdo->exec($sql);
+                }
             }
 
         } catch (\PDOException $e) {

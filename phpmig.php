@@ -13,7 +13,7 @@ if (empty($app->config['database'])) {
 
 $container['pdo'] = $container->share(function () use ($app) {
     $config = $app->config['database'];
-    $dsn = sprintf('%s:host=%s;port=%s', $config['type'], $config['host'], $config['port']);
+    $dsn = sprintf('%s:host=%s;port=%s;dbname=%s', $config['type'], $config['host'], $config['port'], $config['dbname']);
     return new PDO($dsn, $config['username'], $config['password']);
 });
 

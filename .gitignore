@@ -2,4 +2,3 @@
 *.log
 vendor/
 *.lock
-README.MD

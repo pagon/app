@@ -5,7 +5,7 @@
 ## 安装
 
 ```shell
-composer.phar create-project pagon/app myapp
+composer.phar create-project pagon/app myapp 0.1.0
 ```
 
 ## 目录结构（建议）

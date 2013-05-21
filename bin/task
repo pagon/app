@@ -1,14 +1,14 @@
 #!/usr/bin/env php
 <?php
 
-use Pagon\Helper\Cli;
+use Pagon\Cli;
 use Pagon\Utility\ArgParser;
 
 /** @var $app Pagon\App */
 $app = include dirname(__DIR__) . '/bootstrap.php';
 
 // Set buffer off
-$app->config['buffer'] = false;
+$app->buffer = false;
 
 // DB init
 $app->cli('db:init', '\Route\Task\DB\Init');
@@ -21,7 +21,7 @@ $app->cli('db:(:command)', function ($req, $res) {
 });
 
 // Default help
-$app->notFound(function ($req, $res) {
+$app->handleError('404', function ($req, $res) {
     $parser = new ArgParser();
 
     $parser->add('task', array('help' => 'Task to run', 'enum' => array(

@@ -3,7 +3,7 @@
 namespace Route\Task\DB;
 
 use Pagon\Route\Cli as Route;
-use Pagon\Helper\Cli;
+use Pagon\Cli;
 use PDO;
 
 class Init extends Route
@@ -15,12 +15,12 @@ class Init extends Route
 
     public function run()
     {
-        if (empty($this->app->config['database'])) {
+        if (empty($this->app->database)) {
             echo Cli::text('Config "database" is not found' . PHP_EOL, 'red');
             $this->output->end();
         }
 
-        $config = $this->app->config['database'];
+        $config = $this->app->database;
 
 
         $dsn = sprintf('%s:host=%s;port=%s', $config['type'], $config['host'], $config['port']);

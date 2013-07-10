@@ -7,12 +7,12 @@ use \Phpmig\Adapter,
 
 $container = new Pimple();
 
-if (empty($app->config['database'])) {
+if (empty($app->database)) {
     die('Config "database" is not found' . PHP_EOL);
 }
 
 $container['pdo'] = $container->share(function () use ($app) {
-    $config = $app->config['database'];
+    $config = $app->database;
     $dsn = sprintf('%s:host=%s;port=%s;dbname=%s', $config['type'], $config['host'], $config['port'], $config['dbname']);
     return new PDO($dsn, $config['username'], $config['password']);
 });

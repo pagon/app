@@ -15,17 +15,7 @@ class Init extends Route
 
     public function run()
     {
-        if (empty($this->app->database)) {
-            echo Cli::text('Config "database" is not found' . PHP_EOL, 'red');
-            $this->output->end();
-        }
-
-        $config = $this->app->database;
-
-
-        $dsn = sprintf('%s:host=%s;port=%s', $config['type'], $config['host'], $config['port']);
-
-        $pdo = new PDO($dsn, $config['username'], $config['password'], $config['options']);
+        $pdo = $this->app->pdo;
 
         try {
             if ($this->params['force']) {

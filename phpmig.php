@@ -7,18 +7,16 @@ use \Phpmig\Adapter,
 
 $container = new Pimple();
 
-if (empty($app->database)) {
-    die('Config "database" is not found' . PHP_EOL);
+if (empty($app->pdo)) {
+    die('$app->pdo is not found, can not use phpmig' . PHP_EOL);
 }
 
-$container['pdo'] = $container->share(function () use ($app) {
-    $config = $app->database;
-    $dsn = sprintf('%s:host=%s;port=%s;dbname=%s', $config['type'], $config['host'], $config['port'], $config['dbname']);
-    return new PDO($dsn, $config['username'], $config['password']);
-});
+$container['pdo'] = $app->pdo;
 
-$container['phpmig.adapter'] = $container->share(function ($container) {
-    return new Adapter\PDO\Sql($container['pdo'], 'migrations');
+$container['app'] = $app;
+
+$container['phpmig.adapter'] = $container->share(function () use ($app) {
+    return new Adapter\PDO\Sql($app->pdo, 'migrations');
 });
 
 $container['phpmig.migrations'] = function () {

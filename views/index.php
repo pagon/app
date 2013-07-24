@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Page app</title>
+    <title>Page App</title>
     <style type="text/css">
         body {
             font-size: 14px;

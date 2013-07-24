@@ -1,5 +1,12 @@
 #!/usr/bin/env php
 <?php
+/**
+ *
+ * Cli task entry
+ *
+ * Sometimes we need some shells to manage or lookup the data, this task supply this way to use it.
+ *
+ */
 
 use Pagon\Cli;
 use Pagon\Utility\ArgParser;

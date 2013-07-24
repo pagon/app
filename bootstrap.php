@@ -1,4 +1,11 @@
 <?php
+/**
+ *
+ * Bootstrap file for universal load.
+ *
+ * This file will be load by cli and web entry, you can define or config the application as global use.
+ *
+ */
 
 use Pagon\App;
 

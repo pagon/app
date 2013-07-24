@@ -1,4 +1,11 @@
 <?php
+/**
+ *
+ * This file is used to be define the config in global
+ *
+ * This `default` config will be load anyway. This config "key" will be overwrite when other config has the same "key".
+ *
+ */
 
 return array(
     'timezone' => 'Asia/Shanghai',

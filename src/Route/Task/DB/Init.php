@@ -16,6 +16,7 @@ class Init extends Route
     public function run()
     {
         $pdo = $this->app->pdo;
+        $config = $this->app->get("database");
 
         try {
             if ($this->params['force']) {

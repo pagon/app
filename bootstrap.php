@@ -15,9 +15,27 @@ require __DIR__ . '/vendor/autoload.php';
 
 $app = new App(__DIR__ . '/config/default.php');
 
+// Load env from file
+if (is_file(__DIR__ . '/config/env')) {
+    $app->mode(trim(file_get_contents(__DIR__ . '/config/env')));
+}
+
 $mode = $app->mode();
 if (is_file($conf_file = __DIR__ . '/config/' . $mode . '.php')) {
     $app->append(include($conf_file));
+}
+
+// Boost application
+$app->add('Booster');
+
+// Functions
+$app->assisting();
+
+// Add pretty exception
+if ($app->debug) {
+    $app->add('PrettyException');
+} else {
+    error_reporting(E_ALL & ~E_NOTICE);
 }
 
 $app->protect('loadDB', function () {
